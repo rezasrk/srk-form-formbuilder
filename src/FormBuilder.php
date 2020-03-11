@@ -91,6 +91,15 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
+    public function password(array $option = array())
+    {
+        $option = array_merge(['class' => 'form-control'], $option);
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<input type='password' {$attribute}>";
+        $this->afterElement();
+        return $this;
+    }
+
     public function endForm()
     {
         $this->form .= "</form>";

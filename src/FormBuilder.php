@@ -64,11 +64,27 @@ class FormBuilder extends StaticElement
     {
         $attribute = $this->getAttribute($option);
         $this->form .= "<button {$attribute}>{$innerHtml}</button>";
+        $this->afterElement();
         return $this;
     }
 
+    public function textarea(array $option = array(),$innerHtml = "")
+    {
+        $option = array_merge(['class' => 'form-control','width'=>12,'rows'=>'5'], $option);
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<textarea {$attribute}>{$innerHtml}</textarea>";
+        $this->afterElement();
+        return $this;
+    }
 
-    
+    public function file(array $option = array())
+    {
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<input type='file' {$attribute}>";
+        $this->afterElement();
+        return $this;
+    }
+
     public function endForm()
     {
         $this->form .= "</form>";

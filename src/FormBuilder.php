@@ -1,4 +1,5 @@
 <?php
+
 namespace SrkForm\FormBuilder;
 
 class FormBuilder extends StaticElement
@@ -19,6 +20,22 @@ class FormBuilder extends StaticElement
         $attribute = $this->getAttribute($option);
         $this->form .= "<input type='text' {$attribute}>";
         $this->form .= $this->afterElement();
+        return $this;
+    }
+
+    public function select(array $option = array(), array $data = array(), int $selected = null)
+    {
+        $option = array_merge(['class' => 'form-control'], $option);
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<select {$attribute}>";
+        if (count($data) != 0) {
+            $this->form .= "<option value>انتخاب نمایید...</option>";
+            foreach ($data as $key => $value) {
+                ($key === $selected) ? $select = 'selected' : $select = '';
+                $this->form .= "<option {$select} value='{$key}'>{$value}</option>";
+            }
+        }
+        $this->form .= "</select>";
         return $this;
     }
 

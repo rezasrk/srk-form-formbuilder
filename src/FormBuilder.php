@@ -40,9 +40,9 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
-    public function radio(array $option = array(), bool $checked = false,$firstLabel = false)
+    public function radio(array $option = array(), bool $checked = false, $firstLabel = false)
     {
-        $attribute = $this->getAttribute($option,true,$firstLabel);
+        $attribute = $this->getAttribute($option, true, $firstLabel);
         ($checked) ? $check = 'checked' : $check = '';
         $this->form .= "<input {$check} type='radio' {$attribute}>";
         $this->changeSortLabel($option, $firstLabel);
@@ -60,6 +60,15 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
+    public function button(array $option = array(),$innerHtml = "ثبت")
+    {
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<button {$attribute}>{$innerHtml}</button>";
+        return $this;
+    }
+
+
+    
     public function endForm()
     {
         $this->form .= "</form>";

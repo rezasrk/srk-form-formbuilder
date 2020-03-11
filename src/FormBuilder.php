@@ -1,7 +1,7 @@
 <?php
 namespace SrkForm\FormBuilder;
 
-class FormBuilder
+class FormBuilder extends StaticElement
 {
     public function startForm(string $action, array $option = array())
     {

@@ -1,7 +1,7 @@
 <?php
 namespace SrkForm\FormBuilder;
 
-class StaticElement
+class StaticElement extends Config
 {
     protected $is_start;
 

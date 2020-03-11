@@ -25,7 +25,7 @@ class StaticElement extends Config
         return $this;
     }
 
-    public function beforeElement($width, $type = 'colMd')
+    protected function beforeElement($width, $type = 'colMd')
     {
         switch ($type) {
             case 'colXm':
@@ -44,23 +44,22 @@ class StaticElement extends Config
         $this->form .= "<div class='{$col}'><div class='form-group'>";
     }
 
-    public function afterElement()
+    protected function afterElement()
     {
         $this->form .= "</div></div>";
     }
 
-    public function setStarRequired()
+    protected function setStarRequired()
     {
         $this->form .= "<span class='text-danger'>*</span>" . str_repeat(' ', '1');
     }
 
-    public function label($labelName)
+    protected function label($labelName)
     {
         $this->form .= "<label>" . $labelName . "</label>";
-        return $this;
     }
 
-    public function getAttribute(array $option, $beforeElement = true)
+    protected function getAttribute(array $option, $beforeElement = true,$firstLabel = true)
     {
 
         if ($beforeElement) {
@@ -78,14 +77,24 @@ class StaticElement extends Config
                 elseif ($key == "star" && array_key_exists('star', $option))
                     $this->setStarRequired();
 
-                if ($key == "name" && !array_key_exists('label', $option) && is_array($this->labels) && array_key_exists($value, $this->labels))
+                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel && is_array($this->labels) && array_key_exists($value, $this->labels))
                     $this->label($this->labels[$value]);
-                elseif ($key == 'label' && array_key_exists('label', $option))
+                elseif ($key == 'label' && array_key_exists('label', $option) && $firstLabel)
                     $this->label($option['label']);
 
             }
         }
 
         return $attribute;
+    }
+
+
+    protected function changeSortLabel(array $option = array(), $firstLabel)
+    {
+        if(array_key_exists('label',$option) && !$firstLabel)
+            $this->form .= $this->label($option['label']);
+        elseif(array_key_exists('name',$option) && array_key_exists($option['name'],$this->labels))
+            $this->form .= $this->label($this->labels[$option['name']]);
+
     }
 }

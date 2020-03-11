@@ -40,20 +40,22 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
-    public function radio(array $option = array(),bool $checked = false)
+    public function radio(array $option = array(), bool $checked = false,$firstLabel = false)
     {
-        $attribute = $this->getAttribute($option);
+        $attribute = $this->getAttribute($option,true,$firstLabel);
         ($checked) ? $check = 'checked' : $check = '';
         $this->form .= "<input {$check} type='radio' {$attribute}>";
+        $this->changeSortLabel($option, $firstLabel);
         $this->afterElement();
         return $this;
     }
 
-    public function checkbox(array $option = array(),bool $checked = false)
+    public function checkbox(array $option = array(), bool $checked = false, $firstLabel = false)
     {
-        $attribute = $this->getAttribute($option);
+        $attribute = $this->getAttribute($option, true, $firstLabel);
         ($checked) ? $check = 'checked' : $check = '';
         $this->form .= "<input {$check} type='checkbox' {$attribute}>";
+        $this->changeSortLabel($option, $firstLabel);
         $this->afterElement();
         return $this;
     }

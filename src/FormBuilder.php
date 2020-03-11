@@ -23,7 +23,7 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
-    public function select(array $option = array(), array $data = array(), int $selected = null)
+    public function select(array $option = array(), array $data = array(), $selected = null)
     {
         $option = array_merge(['class' => 'form-control'], $option);
         $attribute = $this->getAttribute($option);
@@ -31,8 +31,14 @@ class FormBuilder extends StaticElement
         if (count($data) != 0) {
             $this->form .= "<option value>انتخاب نمایید...</option>";
             foreach ($data as $key => $value) {
-                ($key === $selected) ? $select = 'selected' : $select = '';
-                $this->form .= "<option {$select} value='{$key}'>{$value}</option>";
+                if(is_array($selected) && in_array($key,$selected)) {
+                    $this->form .= "<option selected value='{$key}'>{$value}</option>";
+                }elseif(!is_array($selected) && $key == $selected){
+                    $this->form .= "<option selected value='{$key}'>{$value}</option>";
+                }else{
+                    $this->form .= "<option value='{$key}'>{$value}</option>";
+                }
+
             }
         }
         $this->form .= "</select>";

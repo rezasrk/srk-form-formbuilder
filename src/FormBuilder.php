@@ -48,7 +48,15 @@ class FormBuilder extends StaticElement
         $this->afterElement();
         return $this;
     }
-    
+
+    public function checkbox(array $option = array(),bool $checked = false)
+    {
+        $attribute = $this->getAttribute($option);
+        ($checked) ? $check = 'checked' : $check = '';
+        $this->form .= "<input {$check} type='checkbox' {$attribute}>";
+        $this->afterElement();
+        return $this;
+    }
 
     public function endForm()
     {

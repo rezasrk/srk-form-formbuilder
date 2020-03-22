@@ -16,8 +16,8 @@ class StaticElement extends Config
 
     public function startRow(array $option = array())
     {
-        $opt = array_merge(['class'=>'row'],$option);
-        $attribute = $this->getAttribute($opt,false);
+        $opt = array_merge(['class' => 'row'], $option);
+        $attribute = $this->getAttribute($opt, false);
         $this->form .= "<div {$attribute}>";
         return $this;
     }
@@ -109,6 +109,13 @@ class StaticElement extends Config
         return $this;
     }
 
+    public function i($option)
+    {
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<i {$attribute}></i>";
+        $this->afterElement();
+        return $this;
+    }
 
     protected function changeSortLabel(array $option = array(), $firstLabel)
     {

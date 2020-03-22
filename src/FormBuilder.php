@@ -9,7 +9,6 @@ class FormBuilder extends StaticElement
         $option = array_merge(['method' => 'POST'], $option);
         $attribute = $this->getAttribute($option, false);
         $this->form .= "<form action='{$action}'" . " " . " {$attribute}>";
-        $this->form .= $this->afterElement();
         return $this;
     }
 

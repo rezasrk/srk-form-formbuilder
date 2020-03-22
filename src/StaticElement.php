@@ -1,4 +1,5 @@
 <?php
+
 namespace SrkForm\FormBuilder;
 
 class StaticElement extends Config
@@ -13,9 +14,11 @@ class StaticElement extends Config
             $this->labels = __('validation.attributes');
     }
 
-    public function startRow()
+    public function startRow(array $option = array())
     {
-        $this->form .= "<div class='row'>";
+        $opt = array_merge(['class'=>'row'],$option);
+        $attribute = $this->getAttribute($opt,false);
+        $this->form .= "<div {$attribute}>";
         return $this;
     }
 
@@ -59,7 +62,7 @@ class StaticElement extends Config
         $this->form .= "<label>" . $labelName . "</label>";
     }
 
-    protected function getAttribute(array $option, $beforeElement = true,$firstLabel = true)
+    protected function getAttribute(array $option, $beforeElement = true, $firstLabel = true)
     {
 
         if ($beforeElement) {
@@ -88,12 +91,30 @@ class StaticElement extends Config
         return $attribute;
     }
 
+    public function br()
+    {
+        $this->form .= "<br>";
+        return $this;
+    }
+
+    public function startH($innerHtml, $size = 4)
+    {
+        $this->form .= "<h{$size}>{$innerHtml}</h>";
+        return $this;
+    }
+
+    public function hr()
+    {
+        $this->form .= "<hr>";
+        return $this;
+    }
+
 
     protected function changeSortLabel(array $option = array(), $firstLabel)
     {
-        if(array_key_exists('label',$option) && !$firstLabel)
+        if (array_key_exists('label', $option) && !$firstLabel)
             $this->form .= $this->label($option['label']);
-        elseif(array_key_exists('name',$option) && array_key_exists($option['name'],$this->labels))
+        elseif (array_key_exists('name', $option) && array_key_exists($option['name'], $this->labels))
             $this->form .= $this->label($this->labels[$option['name']]);
 
     }

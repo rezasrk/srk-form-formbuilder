@@ -97,9 +97,9 @@ class StaticElement extends Config
         return $this;
     }
 
-    public function startH($innerHtml, $size = 4)
+    public function h($innerHtml, $size = 4)
     {
-        $this->form .= "<h{$size}>{$innerHtml}</h>";
+        $this->form .= "<h{$size}>{$innerHtml}</h{$size}>";
         return $this;
     }
 

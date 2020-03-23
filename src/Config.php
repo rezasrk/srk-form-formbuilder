@@ -32,7 +32,7 @@ class Config
 
 
     protected $withListAttr = [
-        'class', 'id', 'action', 'method', 'enctype', 'name', 'value','rows','multiple','type'
+        'class', 'id', 'action', 'method', 'enctype', 'name', 'value','rows','multiple','type','style'
     ];
 
     protected $labels;

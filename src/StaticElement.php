@@ -34,6 +34,12 @@ class StaticElement extends Config
         return $this;
     }
 
+    public function patch()
+    {
+        $this->form .= method_field('patch');
+        return $this;
+    }
+
     protected function beforeElement($width, $type = 'colMd')
     {
         switch ($type) {

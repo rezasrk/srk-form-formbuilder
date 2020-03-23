@@ -28,6 +28,11 @@ class StaticElement extends Config
         return $this;
     }
 
+    public function csrf()
+    {
+        $this->form .= csrf_field();
+        return $this;
+    }
 
     protected function beforeElement($width, $type = 'colMd')
     {
@@ -88,15 +93,15 @@ class StaticElement extends Config
                 if (in_array($key, $this->withListAttr))
                     $attribute .= $key . "='" . $value . "'" . str_repeat(' ', 1);
                 $name = "";
-                if(strpos($value,'[') != ""){
-                    if($this->getStiringBetween($value,'[',']') == ""){
-                        $name = str_replace('[','.',$value);
-                        $name = str_replace(']','*',$name);
-                    }else{
-                        $name = str_replace('[','.',$value);
-                        $name = str_replace(']','',$name);
+                if (strpos($value, '[') != "") {
+                    if ($this->getStiringBetween($value, '[', ']') == "") {
+                        $name = str_replace('[', '.', $value);
+                        $name = str_replace(']', '*', $name);
+                    } else {
+                        $name = str_replace('[', '.', $value);
+                        $name = str_replace(']', '', $name);
                     }
-                }else{
+                } else {
                     $name = $value;
                 }
 

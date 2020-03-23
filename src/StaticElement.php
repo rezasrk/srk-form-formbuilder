@@ -28,6 +28,7 @@ class StaticElement extends Config
         return $this;
     }
 
+
     protected function beforeElement($width, $type = 'colMd')
     {
         switch ($type) {
@@ -62,6 +63,18 @@ class StaticElement extends Config
         $this->form .= "<label>" . $labelName . "</label>";
     }
 
+
+    protected function getStiringBetween($string, $start, $end)
+    {
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
+
+
     protected function getAttribute(array $option, $beforeElement = true, $firstLabel = true)
     {
 
@@ -74,17 +87,29 @@ class StaticElement extends Config
             foreach ($option as $key => $value) {
                 if (in_array($key, $this->withListAttr))
                     $attribute .= $key . "='" . $value . "'" . str_repeat(' ', 1);
+                $name = "";
+                if(strpos($value,'[') != ""){
+                    if($this->getStiringBetween($value,'[',']') == ""){
+                        $name = str_replace('[','.',$value);
+                        $name = str_replace(']','*',$name);
+                    }else{
+                        $name = str_replace('[','.',$value);
+                        $name = str_replace(']','',$name);
+                    }
+                }else{
+                    $name = $value;
+                }
 
-                if ($key == "name" && !array_key_exists('star', $option) && is_array($this->is_start) && array_key_exists($value, $this->is_start) && $this->is_start[$value][0] == 'required')
+                if ($key == "name" && !array_key_exists('star', $option) && is_array($this->is_start) && array_key_exists($name, $this->is_start) && $this->is_start[$name][0] == 'required')
                     $this->setStarRequired();
                 elseif ($key == "star" && array_key_exists('star', $option))
                     $this->setStarRequired();
 
-                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel && is_array($this->labels) && array_key_exists($value, $this->labels))
-                    $this->label($this->labels[$value]);
-                elseif ($key == 'label' && array_key_exists('label', $option) && $firstLabel)
+                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel) {
+                    $this->label($this->labels[$name]);
+                } elseif ($key == 'label' && array_key_exists('label', $option) && $firstLabel) {
                     $this->label($option['label']);
-
+                }
             }
         }
 

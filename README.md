@@ -5,7 +5,7 @@
 - laravel
 
 # usage
-
+ - startForm and endForm method
 ```php
 $from = new FormBuilder(ClassValidationRequest::class,true);
 

@@ -5,9 +5,11 @@
 - laravel
 
 # usage
-the default class for all input[type=text] and select is form-control if added class remove default
+for input[type=text] and select By default they have class form-control if class is added it will be deleted class form-control should be imported if needed
+
  - ClassValidationRequest: set dynamic start if the first rules equal required
- - second parameter is bool :  if parameter equal true  , bind name input tag via validation.php file
+ - The value of the second parameter is a boolean which is equal to the value if true and exist name input in validation.php
+  bind instead label
  ```php
  $from = new FormBuilder(ClassValidationRequest::class,true);
  ````
@@ -24,4 +26,4 @@ the default class for all input[type=text] and select is form-control if added c
 ```php
  $form->checkbox(['name'=>'football','value'=>'1'],true)
  ```
- - 
+ - select() mthod like text() method but the second parameter get array for fill option  and thi

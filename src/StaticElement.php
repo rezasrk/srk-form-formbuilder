@@ -116,7 +116,7 @@ class StaticElement extends Config
                 elseif ($key == "star" && array_key_exists('star', $option))
                     $this->setStarRequired();
 
-                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel && array_key_exists($name,$this->labels)) {
+                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel && is_array($this->labels)  && array_key_exists($name,$this->labels)) {
                     $this->label($this->labels[$name]);
                 } elseif ($key == 'label' && array_key_exists('label', $option) && $firstLabel) {
                     $this->label($option['label']);

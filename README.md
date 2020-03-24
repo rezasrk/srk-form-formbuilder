@@ -15,12 +15,6 @@
 ```php
   $form = $form->startForm(route('test'),['method'=>'get'])->endForm()
  ```
- 
- -  top code result
- ```html
-<form action="/test" method="get"></form>
-```
-
 - text() method : the first paramete is array  key = arrtibute and value = attributes value
 ```php
 $form->text(['name'=>'fullName','class'=>'form-control','value'=>'']);

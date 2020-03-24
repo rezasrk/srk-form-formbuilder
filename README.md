@@ -3,4 +3,8 @@
 
 #example
 
--`$from = new FormBuilder(ClassValidationRequest::class,true);`
+```php
+$from = new FormBuilder(ClassValidationRequest::class,true);`
+
+$form->
+```

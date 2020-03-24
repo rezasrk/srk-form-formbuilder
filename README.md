@@ -4,7 +4,11 @@
 #example
 
 ```php
-$from = new FormBuilder(ClassValidationRequest::class,true);`
+$from = new FormBuilder(ClassValidationRequest::class,true);
+```
 
-$form->
+- method startForm()
+
+```php
+$form->startForm(action,$option = array[])
 ```

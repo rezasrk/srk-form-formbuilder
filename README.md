@@ -5,15 +5,23 @@
 - laravel
 
 # usage
- - startForm and endForm method
-```php
-$from = new FormBuilder(ClassValidationRequest::class,true);
 
-  $form = $form->startForm(route('test'),['method'=>'get'])->endForm();
- 
+ - ClassValidationRequest: set dynamic start if the first rules equal required
+ - second parameter is bool :  if parameter equal true  , bind name input tag via validation.php file
+ ```php
+ $from = new FormBuilder(ClassValidationRequest::class,true);
+ ````
+ - startForm() and endForm() method
+```php
+  $form = $form->startForm(route('test'),['method'=>'get'])->endForm()
  ```
  
  -  top code result
  ```html
 <form action="/test" method="get"></form>
+```
+
+- text() method : the first paramete is array  key = arrtibute and value = attributes value
+```php
+$form->text(['name'=>'fullName','class'=>'form-control','value'=>'']);
 ```

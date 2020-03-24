@@ -1,7 +1,10 @@
 # formBuilder 
 - this package create dynamic html form by chainig method 
 
-#example
+# required
+- laravel
+
+# example
 
 ```php
 $from = new FormBuilder(ClassValidationRequest::class,true);

@@ -13,7 +13,7 @@ for input[type=text] and select By default they have class form-control if class
  ```php
  $from = new FormBuilder(ClassValidationRequest::class,true);
  ````
- - startForm() and endForm() method
+ - startForm() and endForm() method action attribute by default is post
 ```php
   $form = $form->startForm(route('test'),['method'=>'get'])->endForm()
  ```
@@ -26,4 +26,8 @@ for input[type=text] and select By default they have class form-control if class
 ```php
  $form->checkbox(['name'=>'football','value'=>'1'],true)
  ```
- - select() mthod like text() method but the second parameter get array for fill option  and thi
+ - select() mthod like text() method but the second parameter get array for fill option  and third parameter selected if the select is multiple the thied paramater able get array for selected option 
+ 
+ ```php
+ $form->select(['name'=>'football'],['key'=>'value'],selected)
+ ```

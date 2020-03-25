@@ -6,7 +6,7 @@ class StaticElement extends Config
 {
     protected $is_start;
 
-    public function __construct(string $validation = "", bool $labelsFile = false)
+    public function __construct(string $validation = "", bool $labelsFile = true)
     {
         if ($validation != "")
             $this->is_start = (new $validation)->rules();

@@ -22,6 +22,13 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
+    public function hidden(array $option = array())
+    {
+        $attribute = $this->getAttribute($option,false);
+        $this->form .= "<input type='hidden' {$attribute}>";
+        return $this;
+    }
+
     public function select(array $option = array(), array $data = array(), $selected = null)
     {
         $option = array_merge(['class' => 'form-control'], $option);
@@ -30,11 +37,11 @@ class FormBuilder extends StaticElement
         if (count($data) != 0) {
             $this->form .= "<option value>انتخاب نمایید...</option>";
             foreach ($data as $key => $value) {
-                if(is_array($selected) && in_array($key,$selected)) {
+                if (is_array($selected) && in_array($key, $selected)) {
                     $this->form .= "<option selected value='{$key}'>{$value}</option>";
-                }elseif(!is_array($selected) && $key == $selected){
+                } elseif (!is_array($selected) && $key == $selected) {
                     $this->form .= "<option selected value='{$key}'>{$value}</option>";
-                }else{
+                } else {
                     $this->form .= "<option value='{$key}'>{$value}</option>";
                 }
 
@@ -65,7 +72,7 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
-    public function button(array $option = array(),$innerHtml = "ثبت")
+    public function button(array $option = array(), $innerHtml = "ثبت")
     {
         $attribute = $this->getAttribute($option);
         $this->form .= "<button {$attribute}>{$innerHtml}</button>";
@@ -73,9 +80,9 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
-    public function textarea(array $option = array(),$innerHtml = "")
+    public function textarea(array $option = array(), $innerHtml = "")
     {
-        $option = array_merge(['class' => 'form-control','width'=>12,'rows'=>'5'], $option);
+        $option = array_merge(['class' => 'form-control', 'width' => 12, 'rows' => '5'], $option);
         $attribute = $this->getAttribute($option);
         $this->form .= "<textarea {$attribute}>{$innerHtml}</textarea>";
         $this->afterElement();

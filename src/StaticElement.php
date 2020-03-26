@@ -62,7 +62,7 @@ class StaticElement extends Config
     public function startDiv($option = array())
     {
         $attribute = $this->getAttribute($option, false);
-        $this->form .= "<div >";
+        $this->form .= "<div {$attribute}>";
         return $this;
     }
 

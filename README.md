@@ -2,7 +2,10 @@
 - this package create dynamic html form by chainig method 
 
 # required
-- laravel
+- laravel >= 5
+
+# installation 
+` composer require srk-form/formbuilder`
 
 # usage
 for input[type=text] and select By default they have class form-control if class is added it will be deleted class form-control should be imported if needed

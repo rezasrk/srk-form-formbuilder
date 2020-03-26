@@ -59,6 +59,19 @@ class StaticElement extends Config
         $this->form .= "<div class='{$col}'><div class='form-group'>";
     }
 
+    public function startDiv($option = array())
+    {
+        $attribute = $this->getAttribute($option, false);
+        $this->form .= "<div >";
+        return $this;
+    }
+
+    public function endDiv()
+    {
+        $this->form .= "</div>";
+        return $this;
+    }
+
     protected function afterElement()
     {
         $this->form .= "</div></div>";
@@ -116,7 +129,7 @@ class StaticElement extends Config
                 elseif ($key == "star" && array_key_exists('star', $option))
                     $this->setStarRequired();
 
-                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel && is_array($this->labels)  && array_key_exists($name,$this->labels)) {
+                if ($key == "name" && !array_key_exists('label', $option) && $firstLabel && is_array($this->labels) && array_key_exists($name, $this->labels)) {
                     $this->label($this->labels[$name]);
                 } elseif ($key == 'label' && array_key_exists('label', $option) && $firstLabel) {
                     $this->label($option['label']);

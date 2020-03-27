@@ -72,6 +72,14 @@ class StaticElement extends Config
         return $this;
     }
 
+    public function a($option, $innerHtml = "")
+    {
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<a {$attribute}>{$innerHtml}</a>";
+        $this->afterElement();
+        return $this;
+    }
+
     protected function afterElement()
     {
         $this->form .= "</div></div>";

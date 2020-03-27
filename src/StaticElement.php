@@ -174,4 +174,9 @@ class StaticElement extends Config
             $this->form .= $this->label($this->labels[$option['name']]);
 
     }
+
+    public function get()
+    {
+        return $this->form;
+    }
 }

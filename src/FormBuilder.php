@@ -24,8 +24,21 @@ class FormBuilder extends StaticElement
 
     public function hidden(array $option = array())
     {
-        $attribute = $this->getAttribute($option,false);
+        $attribute = $this->getAttribute($option, false);
         $this->form .= "<input type='hidden' {$attribute}>";
+        return $this;
+    }
+
+    public function bootstrapFile($option = array())
+    {
+        $lable = (array_key_exists($option['name'], $this->labels)) ? $this->labels[$option['name']] : 'انتخاب فایل';
+        $isRequired = array_key_exists($option['name'],$this->is_start) ? $is_star = "<span class='text-danger'>*</span>" : $is_star = '';
+        $this->form .= "<div class='col-md-12'>
+                            <div class='form-group'>
+                            {$is_star}<label>{$lable}</label>
+            <div class='custom-file'>
+                    <label class='custom-file-label'>انتخاب فایل</label>
+            <input type='file' name={$option['name']} class='custom-file-input'></div></div></div>";
         return $this;
     }
 

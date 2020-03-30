@@ -59,10 +59,10 @@ class StaticElement extends Config
         $this->form .= "<div class='{$col}'><div class='form-group'>";
     }
 
-    public function startDiv($option = array())
+    public function startDiv($option = array(),$innerHtml = "")
     {
         $attribute = $this->getAttribute($option, false);
-        $this->form .= "<div {$attribute}>";
+        $this->form .= "<div {$attribute}>{$innerHtml}";
         return $this;
     }
 

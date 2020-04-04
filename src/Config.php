@@ -32,7 +32,7 @@ class Config
 
 
     protected $withListAttr = [
-        'class', 'id', 'action', 'method','href',
+        'class', 'id', 'action', 'method','href','title',
         'enctype', 'name', 'value','rows','multiple','type','style','readonly'
     ];
 

@@ -4,7 +4,7 @@ namespace SrkForm\FormBuilder;
 
 class FormBuilder extends StaticElement
 {
-    public function startForm(string $action, array $option = array())
+    public function startForm(string $action = "", array $option = array())
     {
         $option = array_merge(['method' => 'POST'], $option);
         $attribute = $this->getAttribute($option, false);
@@ -32,7 +32,7 @@ class FormBuilder extends StaticElement
     public function bootstrapFile($option = array())
     {
         $lable = (array_key_exists($option['name'], $this->labels)) ? $this->labels[$option['name']] : 'انتخاب فایل';
-        $isRequired = array_key_exists($option['name'],$this->is_start) && $this->is_start[$option['name']][0] == "required" ? $is_star = "<span class='text-danger'>*</span>" : $is_star = '';
+        $isRequiredz = array_key_exists($option['name'],$this->is_start) && $this->is_start[$option['name']][0] == "required" ? $is_star = "<span class='text-danger'>*</span>" : $is_star = '';
         $this->form .= "<div class='col-md-12'>
                             <div class='form-group'>
                             {$is_star}<label>{$lable}</label>

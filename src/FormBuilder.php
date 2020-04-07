@@ -22,6 +22,15 @@ class FormBuilder extends StaticElement
         return $this;
     }
 
+    public function color(array $option = array())
+    {
+        $option = array_merge(['class' => 'form-control'], $option);
+        $attribute = $this->getAttribute($option);
+        $this->form .= "<input type='color' {$attribute}>";
+        $this->form .= $this->afterElement();
+        return $this;
+    }
+
     public function hidden(array $option = array())
     {
         $attribute = $this->getAttribute($option, false);

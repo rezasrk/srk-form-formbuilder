@@ -6,10 +6,12 @@ class StaticElement extends Config
 {
     protected $is_start;
 
-    public function __construct(string $validation = "", bool $labelsFile = true)
+    public function __construct($validation = null, bool $labelsFile = true)
     {
-        if ($validation != "")
+        if (!is_array($validation) && $validation != "")
             $this->is_start = (new $validation)->rules();
+        elseif (is_array($validation))
+            $this->is_start = $validation;
         if ($labelsFile)
             $this->labels = __('validation.attributes');
     }
@@ -59,7 +61,7 @@ class StaticElement extends Config
         $this->form .= "<div class='{$col}'><div class='form-group'>";
     }
 
-    public function startDiv($option = array(),$innerHtml = "")
+    public function startDiv($option = array(), $innerHtml = "")
     {
         $attribute = $this->getAttribute($option, false);
         $this->form .= "<div {$attribute}>{$innerHtml}";

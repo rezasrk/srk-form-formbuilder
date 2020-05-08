@@ -119,8 +119,7 @@ class StaticElement extends Config
         $attribute = "";
         if (count($option) != 0) {
             foreach ($option as $key => $value) {
-                if (in_array($key, $this->withListAttr))
-                    $attribute .= $key . "='" . $value . "'" . str_repeat(' ', 1);
+                $attribute .= $key . "='" . $value . "'" . str_repeat(' ', 1);
                 $name = "";
                 if (strpos($value, '[') != "") {
                     if ($this->getStiringBetween($value, '[', ']') == "") {
